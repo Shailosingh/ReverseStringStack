@@ -16,8 +16,8 @@ main PROC
 	mov ecx, stringLen
 
 	PushCharToStack:
-		movzx eax, myString[esi]	; Moves first character into eax register, zeroing all else
-		push eax					; Pushes the eax register on the stack
+		movzx ax, myString[esi]		; Moves first character into ax register
+		push ax 					; Pushes the ax register on the stack
 		inc esi						; Increment index
 		loop PushCharToStack		; Decrement ecx and keep looping subroutine until it reaches 0
 
@@ -26,8 +26,8 @@ main PROC
 	mov ecx, stringLen
 
 	PopCharToMemory:
-		pop eax						; Take character from top of stack to eax
-		mov myString[esi], al		; Take the lower 8 bytes of ax register (the char) and put in memory
+		pop ax						; Take character from top of stack to ax
+		mov myString[esi], al		; Take the char in al and put into memory
 		inc esi						; Increment string index
 		loop PopCharToMemory		; Loop through whole string
 
